@@ -10,8 +10,8 @@ class Editor(models.Model):
     class Meta:
         ordering = ['first_name']
 
-    class tags(models.Model):
-       name = models.CharField(max_length =30)
+class tags(models.Model):
+    name = models.CharField(max_length =30)
 
     def __str__(self):
         return self.name
@@ -19,6 +19,9 @@ class Article(models.Model):
     title = models.CharField(max_length =60)
     post = models.TextField()
     editor = models.ForeignKey(Editor)
+    tags = models.ManyToManyField(tags)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
 #     editor = Editor.objects.get(email = 'example@gmail.com')
 #     print('Editor found')
 # except DoesNotExist:
